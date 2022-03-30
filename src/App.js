@@ -1,26 +1,86 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import Header from './components/Header/Header';
+import Filter from './components/Filter/Filter';
+import Ordem from './components/Ordem/Ordem';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const MainDiv = styled.div`
+
+`
+
+const MenuSelecao = styled.div`
+
+`
+
+const Footer = styled.footer`
+height: 60px;
+`
+
+const Section = styled.section`
+height: 500px;
+
+div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  select{
+    height: 26px;
+  }
+
+  input{
+    height: 20px;
+  }
+}
+`
+
+
+class App extends React.Component {
+
+  state = {
+    produtos: [
+      {
+        NomeProduto: 'Marte',
+        preco: 10,
+        imagen: 'url',
+        id: Math.random().toString(36).substr(2, 9)
+      },
+    ]
+  }
+
+  numeroProdutos = 0;
+
+
+  render() {
+    return (
+      <MainDiv>
+        <Header />
+        <hr />
+        <img />
+        <hr />
+        <Section>
+
+          <div>
+            <Filter />
+            <hr />
+            <Ordem />
+            <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
+          </div>
+          <hr />
+          <div>
+            lista de cards = produto
+          </div>
+          <hr />
+
+          section
+        </Section>
+        <hr />
+        <Footer>
+
+        </Footer>
+      </MainDiv>
+    );
+  }
+
 }
 
 export default App;
