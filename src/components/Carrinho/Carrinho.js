@@ -17,7 +17,7 @@ const CartDiv = styled.div`
   background-color: white;
 
   h2{
-    margin auto;
+    margin: auto;
     margin-top: 0px;
     margin-bottom: 0px;
   }
