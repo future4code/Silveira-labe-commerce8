@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Header from './components/Header/Header';
 import Filter from './components/Filter/Filter';
 import Ordem from './components/Ordem/Ordem';
+import CardProduto from './components/CardProduto/CardProduto';
+import listaProdutos from '../src/Data/produtos.json';
 
 const MainDiv = styled.div`
 
@@ -37,20 +39,13 @@ div{
 class App extends React.Component {
 
   state = {
-    produtos: [
-      {
-        NomeProduto: 'Marte',
-        preco: 10,
-        imagen: 'url',
-        id: Math.random().toString(36).substr(2, 9)
-      },
-    ]
+    produtos: listaProdutos
   }
 
   numeroProdutos = 0;
 
-
   render() {
+
     return (
       <MainDiv>
         <Header />
@@ -67,7 +62,18 @@ class App extends React.Component {
           </div>
           <hr />
           <div>
-            lista de cards = produto
+            {
+              this.state.produtos.map((produto) => {
+                return (
+                  <CardProduto
+                    id={produto.id}
+                    preco={produto.preco}
+                    img={produto.imagem}
+                    name={produto.NomeProduto}
+                  />
+                )
+              })
+            }
           </div>
           <hr />
 
