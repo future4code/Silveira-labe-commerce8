@@ -40,13 +40,34 @@ class App extends React.Component {
 
   state = {
     produtos: listaProdutos,
-    ordem: ""
+    ordem: "",
+    valorMin: '',
+    valorMax: '',
+    busca: ''
   }
 
   numeroProdutos = 0;
 
   mudarOrdem = (event) => {
     this.setState({ ordem: event.target.value  })
+  }
+
+  updateValorMin = (event) => {
+    this.setState({
+      valorMin: event.target.value
+    })
+  }
+
+  updateValorMax = (event) => {
+    this.setState({
+      valorMax: event.target.value
+    })
+  }
+  
+  updateBusca = (event) => {
+    this.setState({
+      busca: event.target.value
+    })
   }
 
   render() {
@@ -63,12 +84,31 @@ class App extends React.Component {
             <Filter />
             <hr />
             <Ordem onChange={this.props.mudarOrdem} />
+            <Filter 
+              busca={this.state.busca}
+              valorMin={this.state.valorMin}
+              valorMax={this.state.valorMax}
+              updateValorMin={this.updateValorMin}
+              updateValorMax={this.updateValorMax}
+              updateBusca={this.updateBusca}
+            />
+                
             <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
           </div>
           <hr />
           <div>
             {
-              this.state.produtos.map((produto) => {
+              this.state.produtos
+              .filter(produto => {
+                return produto.NomeProduto.toLowerCase().includes(this.state.busca.toLowerCase()); 
+              })
+               .filter(produto => {
+                  return this.state.valorMin === "" || produto.preco >= this.state.valorMin
+               })
+               .filter(produto => {
+                  return this.state.valorMax === "" || produto.preco <= this.state.valorMax
+               })
+              .map((produto) => {
                 return (
                   <CardProduto
                     id={produto.id}
