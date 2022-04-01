@@ -14,16 +14,7 @@ const MainDiv = styled.div`
 const MenuSelecao = styled.div`
 
 `
-const ContainerGrid = styled.div`
 
-`
-const DivProdutos = styled.div`
-  background-color: aqua;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 50px;
-  justify-items: center;
-`
 const DivCard = styled.div`
 border:solid 2px;
 display:flex;
@@ -31,6 +22,8 @@ flex-direction:column;
 `
 
 const Section = styled.section`
+height: 500px;
+
 div{
   display: flex;
   align-items: center;
@@ -54,12 +47,13 @@ class App extends React.Component {
     produtos: listaProdutos,
     filtroCarrinho: [],
     stateButton: false,    
-    ordem: "",
+    ordem: "Crescente",
     valorMin: '',
     valorMax: '',
     busca: ''
 
   }
+
 
   addInCart = (id) => {
     listaProdutos.map((produto) => {
@@ -68,7 +62,7 @@ class App extends React.Component {
         this.setState({filtroCarrinho: this.state.filtroCarrinho})
         
       }
-    })
+    })    
   }
 
 
@@ -80,6 +74,7 @@ class App extends React.Component {
     this.state.filtroCarrinho = novoArray
     this.setState({filtroCarrinho: this.state.filtroCarrinho})
     console.log(this.state.filtroCarrinho)
+    console.log(this.state.produtos.length)
   }
 
 
@@ -107,33 +102,7 @@ class App extends React.Component {
 
   render() {
 
-    return (
-      <MainDiv>
-        <Header onClick={this.delInCart} filtroCarrinho = {this.state.filtroCarrinho}/>
-        <hr />
-        <img />
-        <hr />
-        <Section>
-          <div>
-            <Filter />
-            <hr />
-            <Ordem onChange={this.props.mudarOrdem} />
-            <Filter 
-              busca={this.state.busca}
-              valorMin={this.state.valorMin}
-              valorMax={this.state.valorMax}
-              updateValorMin={this.updateValorMin}
-              updateValorMax={this.updateValorMax}
-              updateBusca={this.updateBusca}
-            />
-                
-            <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
-          </div>
-          </Section>
-          <hr />
-          <div>
-            {
-              this.state.produtos
+    let listaProdutosnaTela = this.state.produtos
               .filter(produto => {
                 return produto.NomeProduto.toLowerCase().includes(this.state.busca.toLowerCase()); 
               })
@@ -143,9 +112,9 @@ class App extends React.Component {
                .filter(produto => {
                   return this.state.valorMax === "" || produto.preco <= this.state.valorMax
                })
+               .sort((produtoA, produtoB) => this.state.ordem === 'Crescente' ? produtoA.preco - produtoB.preco : produtoB.preco - produtoA.preco)
               .map((produto) => {
                 return (
-                  <DivProdutos>
                   <DivCard>
                     <CardProduto
                       id={produto.id}
@@ -155,13 +124,44 @@ class App extends React.Component {
                     />
                     <button onClick={() => this.addInCart(produto.id)}>adicionar ao carrinho</button>
                   </DivCard>
-                  </DivProdutos>
                 )
-              })          
-            }
+              })
+
+    return (
+      <MainDiv>
+        <Header onClick={this.delInCart} filtroCarrinho = {this.state.filtroCarrinho}/>
+        <hr />
+        <img />
+        <hr />
+        <Section>
+
+          <div>
+            <Filter 
+              busca={this.state.busca}
+              valorMin={this.state.valorMin}
+              valorMax={this.state.valorMax}
+              updateValorMin={this.updateValorMin}
+              updateValorMax={this.updateValorMax}
+              updateBusca={this.updateBusca}
+            />
+            <Ordem mudarOrdem={this.mudarOrdem} />
+                
+            <label>{'Quantidade de produtos: ' + listaProdutosnaTela.length}</label>
           </div>
           <hr />
+          <div>
+            {
+              listaProdutosnaTela              
+            }
+            
+          </div>
+          <hr />
+
+          section
+        </Section>
+        <hr />
         <Footer>
+
         </Footer>
       </MainDiv>
     );
