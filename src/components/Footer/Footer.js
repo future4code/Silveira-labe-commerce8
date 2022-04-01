@@ -27,11 +27,9 @@ const ImagemIcones = styled.div`
         width: 207px;
         justify-content: space-around;
         margin-bottom: 10px;
-
-    img {
-        width: 30px;
-        }
-    }
+        img {
+            width: 30px;
+            }
 
 `
 

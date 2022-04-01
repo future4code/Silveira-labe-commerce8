@@ -4,19 +4,25 @@ import Carrinho from '../Carrinho/Carrinho';
 import listaProdutos from '../../Data/produtos.json';
 
 const CardContainer = styled.div`
-  background-color: orange;
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 320px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  border: 2px solid gray;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
   img{
     width: 100%;
-    height: 100%;
+    max-height: 260px;
+    min-height: 260px;
+  }
+  h3{
+    text-align: center;
+    width: 80%;
+    min-height: 60px;
+  }
+  p{
+    margin: 0;
+    font-size: 18px;
   }
 `
 
@@ -27,8 +33,8 @@ class Card extends React.Component {
     return (
       <CardContainer>
         <img src={this.props.img}/>
-        <p>{this.props.name}</p>
-        <p>{this.props.preco}</p>
+        <h3>{this.props.name}</h3>
+        <p>R$ {this.props.preco},00</p>
       </CardContainer>
     );
   }

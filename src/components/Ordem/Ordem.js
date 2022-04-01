@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-
+const SelectOrdem = styled.select`
+  margin: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+`;
 
 class Ordem extends React.Component {
     
@@ -10,13 +13,13 @@ class Ordem extends React.Component {
         return (
           <div>
             <label>Ordenação:</label>
-            <select
+            <SelectOrdem
                 value={this.props.ordem} 
                 onChange={this.props.mudarOrdem}>
               <option value="Crescente">Crescente</option>
               <option value="Decrescente">Decrescente</option>
               
-            </select>
+            </SelectOrdem>
           </div>
         );
       }
