@@ -21,10 +21,6 @@ display:flex;
 flex-direction:column;
 `
 
-const Footer = styled.footer`
-height: 60px;
-`
-
 const Section = styled.section`
 height: 500px;
 
@@ -51,12 +47,13 @@ class App extends React.Component {
     produtos: listaProdutos,
     filtroCarrinho: [],
     stateButton: false,    
-    ordem: "",
+    ordem: "Crescente",
     valorMin: '',
     valorMax: '',
     busca: ''
 
   }
+
 
   addInCart = (id) => {
     listaProdutos.map((produto) => {
@@ -65,7 +62,7 @@ class App extends React.Component {
         this.setState({filtroCarrinho: this.state.filtroCarrinho})
         
       }
-    })
+    })    
   }
 
 
@@ -77,6 +74,7 @@ class App extends React.Component {
     this.state.filtroCarrinho = novoArray
     this.setState({filtroCarrinho: this.state.filtroCarrinho})
     console.log(this.state.filtroCarrinho)
+    console.log(this.state.produtos.length)
   }
 
 
@@ -104,33 +102,7 @@ class App extends React.Component {
 
   render() {
 
-    return (
-      <MainDiv>
-        <Header onClick={this.delInCart} filtroCarrinho = {this.state.filtroCarrinho}/>
-        <hr />
-        <img />
-        <hr />
-        <Section>
-
-          <div>
-            <Filter />
-            <hr />
-            <Ordem onChange={this.props.mudarOrdem} />
-            <Filter 
-              busca={this.state.busca}
-              valorMin={this.state.valorMin}
-              valorMax={this.state.valorMax}
-              updateValorMin={this.updateValorMin}
-              updateValorMax={this.updateValorMax}
-              updateBusca={this.updateBusca}
-            />
-                
-            <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
-          </div>
-          <hr />
-          <div>
-            {
-              this.state.produtos
+    let listaProdutosnaTela = this.state.produtos
               .filter(produto => {
                 return produto.NomeProduto.toLowerCase().includes(this.state.busca.toLowerCase()); 
               })
@@ -140,6 +112,7 @@ class App extends React.Component {
                .filter(produto => {
                   return this.state.valorMax === "" || produto.preco <= this.state.valorMax
                })
+               .sort((produtoA, produtoB) => this.state.ordem === 'Crescente' ? produtoA.preco - produtoB.preco : produtoB.preco - produtoA.preco)
               .map((produto) => {
                 return (
                   <DivCard>
@@ -153,8 +126,32 @@ class App extends React.Component {
                   </DivCard>
                 )
               })
-              
-              
+
+    return (
+      <MainDiv>
+        <Header onClick={this.delInCart} filtroCarrinho = {this.state.filtroCarrinho}/>
+        <hr />
+        <img />
+        <hr />
+        <Section>
+
+          <div>
+            <Filter 
+              busca={this.state.busca}
+              valorMin={this.state.valorMin}
+              valorMax={this.state.valorMax}
+              updateValorMin={this.updateValorMin}
+              updateValorMax={this.updateValorMax}
+              updateBusca={this.updateBusca}
+            />
+            <Ordem mudarOrdem={this.mudarOrdem} />
+                
+            <label>{'Quantidade de produtos: ' + listaProdutosnaTela.length}</label>
+          </div>
+          <hr />
+          <div>
+            {
+              listaProdutosnaTela              
             }
             
           </div>
