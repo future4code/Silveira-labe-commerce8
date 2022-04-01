@@ -1,12 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// tem que ter um ordem no state do App.js pra pdoer funcionar a função?
 
 
-mudarOrdem = (event) => {
-  this.setState({ ordem: event.target.value  })
-}
 
 class Ordem extends React.Component {
     
@@ -15,9 +11,8 @@ class Ordem extends React.Component {
           <div>
             <label>Ordenação:</label>
             <select
-                value={this.state.ordem} 
-                onChange={this.mudarOrdem}>
-              <option>Nenhum</option> 
+                value={this.props.ordem} 
+                onChange={this.props.mudarOrdem}>
               <option value="Crescente">Crescente</option>
               <option value="Decrescente">Decrescente</option>
               
