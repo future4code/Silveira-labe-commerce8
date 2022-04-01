@@ -24,15 +24,10 @@ const DivProdutos = styled.div`
   gap: 50px;
   justify-items: center;
 `
-
 const DivCard = styled.div`
 border:solid 2px;
 display:flex;
 flex-direction:column;
-`
-
-const Footer = styled.footer`
-height: 60px;
 `
 
 const Section = styled.section`
@@ -134,8 +129,8 @@ class App extends React.Component {
                 
             <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
           </div>
+          </Section>
           <hr />
-<<<<<<< HEAD
           <div>
             {
               this.state.produtos
@@ -149,13 +144,8 @@ class App extends React.Component {
                   return this.state.valorMax === "" || produto.preco <= this.state.valorMax
                })
               .map((produto) => {
-=======
-          </Section>
-          <ContainerGrid>
-            <DivProdutos>
-              {this.state.produtos.map((produto) => {
->>>>>>> a90cc8c (Grid Configurado)
                 return (
+                  <DivProdutos>
                   <DivCard>
                     <CardProduto
                       id={produto.id}
@@ -165,22 +155,13 @@ class App extends React.Component {
                     />
                     <button onClick={() => this.addInCart(produto.id)}>adicionar ao carrinho</button>
                   </DivCard>
+                  </DivProdutos>
                 )
-              })
-<<<<<<< HEAD
-              
-              
+              })          
             }
-            
           </div>
-=======
-              }
-            </DivProdutos>
-          </ContainerGrid>
->>>>>>> a90cc8c (Grid Configurado)
           <hr />
         <Footer>
-
         </Footer>
       </MainDiv>
     );
