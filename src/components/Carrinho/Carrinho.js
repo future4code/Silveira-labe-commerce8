@@ -14,35 +14,13 @@ height: 420px;
 width: 300px;
 background-color: white;
 display:flex;
+color:black;
 flex-direction: column;
 align-items: center;
 justify-items: center;
 border-radius: 10px;
-border:solid 2px;
 margin-bottom: 10px;
 `
-
-const CartDiv = styled.div`
-  position: fixed;
-  display:flex;
-  flex-direction:column;
-  align-items: center;
-  justify-content: center;
-  right: 0px;
-  top: 60px;
-  border-radius: 10px;
-  border: solid 1px;
-  margin-right: 5px;
-  height: 400px;
-  width: 300px;
-  background-color: white;
-
-  h2{
-    margin: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
- `
 
 const Container = styled.div`
 display:flex;
@@ -62,7 +40,7 @@ height: 40px;
 border: none;
 background-color: black;
 color: white;
-border: solid black 1px;
+border-top: solid black 1px;
 border-bottom-right-radius: 6px;
 border-bottom-left-radius: 6px;
 
