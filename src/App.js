@@ -49,6 +49,23 @@ const Section = styled.section`
 
 `
 
+const MainImg = styled.div`
+height:500px;
+background: url(${(props)=>props.imgUrl});
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+display:flex;
+justify-content:center;
+align-items: center;
+
+h1{
+  font-size:60px;
+  color:white;
+  font-family: 'Rajdhani', sans-serif;
+}
+`
+
 
 
 
@@ -141,6 +158,9 @@ class App extends React.Component {
     return (
       <MainDiv>
         <Header onClick={this.delInCart} filtroCarrinho={this.state.filtroCarrinho} />
+        <MainImg imgUrl='https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'>
+          <h1>Explore a Galáxia</h1>
+        </MainImg>
         <Section>
           <DivFiltros>
             <Filter
