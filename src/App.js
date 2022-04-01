@@ -14,6 +14,16 @@ const MainDiv = styled.div`
 const MenuSelecao = styled.div`
 
 `
+const ContainerGrid = styled.div`
+
+`
+const DivProdutos = styled.div`
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+  justify-items: center;
+`
 
 const DivCard = styled.div`
 border:solid 2px;
@@ -26,8 +36,6 @@ height: 60px;
 `
 
 const Section = styled.section`
-height: 500px;
-
 div{
   display: flex;
   align-items: center;
@@ -111,7 +119,6 @@ class App extends React.Component {
         <img />
         <hr />
         <Section>
-
           <div>
             <Filter />
             <hr />
@@ -128,6 +135,7 @@ class App extends React.Component {
             <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
           </div>
           <hr />
+<<<<<<< HEAD
           <div>
             {
               this.state.produtos
@@ -141,6 +149,12 @@ class App extends React.Component {
                   return this.state.valorMax === "" || produto.preco <= this.state.valorMax
                })
               .map((produto) => {
+=======
+          </Section>
+          <ContainerGrid>
+            <DivProdutos>
+              {this.state.produtos.map((produto) => {
+>>>>>>> a90cc8c (Grid Configurado)
                 return (
                   <DivCard>
                     <CardProduto
@@ -153,16 +167,18 @@ class App extends React.Component {
                   </DivCard>
                 )
               })
+<<<<<<< HEAD
               
               
             }
             
           </div>
+=======
+              }
+            </DivProdutos>
+          </ContainerGrid>
+>>>>>>> a90cc8c (Grid Configurado)
           <hr />
-
-          section
-        </Section>
-        <hr />
         <Footer>
 
         </Footer>

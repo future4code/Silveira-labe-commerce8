@@ -4,12 +4,20 @@ import Carrinho from '../Carrinho/Carrinho';
 import listaProdutos from '../../Data/produtos.json';
 
 const CardContainer = styled.div`
+  background-color: orange;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
+<<<<<<< HEAD
   width: 150px;
   height: 150px;
+=======
+  width: 300px;
+  height: 320px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: 2px solid gray;
+  align-items: flex-end;
+>>>>>>> a90cc8c (Grid Configurado)
 `
 
 class Card extends React.Component {
