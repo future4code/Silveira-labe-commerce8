@@ -50,6 +50,9 @@ border-bottom-left-radius: 6px;
 }
 `
 
+const ValorItens = styled.div`
+  background-color: red;
+`;
 
 
 class Carrinho extends React.Component {
@@ -84,6 +87,9 @@ class Carrinho extends React.Component {
             <Container>
               {componenteItem}
             </Container>
+            <ValorItens>
+              555
+            </ValorItens>
             <Button>Comprar</Button>
           </Card>
         );

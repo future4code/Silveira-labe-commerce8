@@ -16,14 +16,13 @@ const DivFiltros = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 10px 0;
+  margin-top: 30px;
   select{
     height: 26px;
   }
 `
 
 const ProdutosNaTela = styled.div`
-  background-color: blue;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -32,17 +31,34 @@ const ProdutosNaTela = styled.div`
 `
 
 const DivCard = styled.div`
-border:solid 2px;
+border:solid 1px #ccc;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0px 2px 15px rgba(0,0,0,0.7);
 display:flex;
 flex-direction:column;
 background-color: white;
 margin: 50px;
 align-items: center;
+button{
+  width: 100%;
+  height: 50px;
+  border: 0;
+  background-color: rgb(20, 100, 200);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+  :hover{    
+    background-color: rgba(20, 100, 200,0.7);
+  }
+  :active{    
+    background-color: rgb(20, 100, 200);
+  }
+}
 `
 
 const Section = styled.section`
-  background-color: yellow;
-
   input{
     height: 20px;
   }
@@ -150,7 +166,7 @@ class App extends React.Component {
               img={produto.imagem}
               name={produto.NomeProduto}
             />
-            <button onClick={() => this.addInCart(produto.id)}>adicionar ao carrinho</button>
+            <button onClick={() => this.addInCart(produto.id)}><i class="fas fa-cart-plus"></i></button>
           </DivCard>
         )
       })
