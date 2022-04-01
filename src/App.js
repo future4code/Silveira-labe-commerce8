@@ -5,6 +5,7 @@ import Filter from './components/Filter/Filter';
 import Ordem from './components/Ordem/Ordem';
 import CardProduto from './components/CardProduto/CardProduto';
 import listaProdutos from '../src/Data/produtos.json';
+import Footer from './components/Footer/Footer';
 
 const MainDiv = styled.div`
 
@@ -14,9 +15,6 @@ const MenuSelecao = styled.div`
 
 `
 
-const Footer = styled.footer`
-height: 60px;
-`
 
 const Section = styled.section`
 height: 500px;
@@ -36,16 +34,23 @@ div{
 `
 
 
+
+
 class App extends React.Component {
 
   state = {
     produtos: listaProdutos,
+    ordem: "",
     valorMin: '',
     valorMax: '',
     busca: ''
   }
 
   numeroProdutos = 0;
+
+  mudarOrdem = (event) => {
+    this.setState({ ordem: event.target.value  })
+  }
 
   updateValorMin = (event) => {
     this.setState({
@@ -65,7 +70,6 @@ class App extends React.Component {
     })
   }
 
-
   render() {
 
     return (
@@ -77,6 +81,9 @@ class App extends React.Component {
         <Section>
 
           <div>
+            <Filter />
+            <hr />
+            <Ordem onChange={this.props.mudarOrdem} />
             <Filter 
               busca={this.state.busca}
               valorMin={this.state.valorMin}
@@ -85,7 +92,7 @@ class App extends React.Component {
               updateValorMax={this.updateValorMax}
               updateBusca={this.updateBusca}
             />
-            <Ordem />
+                
             <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
           </div>
           <hr />
@@ -111,6 +118,8 @@ class App extends React.Component {
                   />
                 )
               })
+              
+              
             }
           </div>
           <hr />
