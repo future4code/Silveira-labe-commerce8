@@ -10,20 +10,19 @@ const ContainerFooter = styled.div`
     background-color: rgb(20, 100, 200);
     justify-content: space-around;
     align-items: center;
-    margin-top: 50px;
     height: 100px;
 
     p {
         color: white;
     }
 `
-const RedesSociais = styled.div `
+const RedesSociais = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `
-const ImagemIcones = styled.div `
+const ImagemIcones = styled.div`
         display: flex;
         width: 207px;
         justify-content: space-around;
@@ -37,16 +36,16 @@ const ImagemIcones = styled.div `
 `
 
 class Footer extends React.Component {
-    render(){
+    render() {
         return (
             <ContainerFooter>
                 <p> 🚀 Galaxy Quest - Passagens de Ida para todo o Sistema Solar 🚀 </p>
-               
+
                 <RedesSociais>
                     <ImagemIcones>
-                        <a href="https://www.instagram.com/" target="_blank"><img src={instagram} alt="Ícone Instagram"/></a>
-                        <a href="https://www.twitter.com/" target="_blank"><img src={twitter} alt="Ícone Twitter"/></a>
-                        <a href="https://www.facebook.com/" target="_blank"><img src={facebook} alt="Ícone Facebook"/></a>
+                        <a href="https://www.instagram.com/" target="_blank"><img src={instagram} alt="Ícone Instagram" /></a>
+                        <a href="https://www.twitter.com/" target="_blank"><img src={twitter} alt="Ícone Twitter" /></a>
+                        <a href="https://www.facebook.com/" target="_blank"><img src={facebook} alt="Ícone Facebook" /></a>
                     </ImagemIcones>
                 </RedesSociais>
             </ContainerFooter>

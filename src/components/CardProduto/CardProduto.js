@@ -7,7 +7,7 @@ const CardContainer = styled.div`
   background-color: orange;
   display: flex;
   justify-content: center;
-  width: 300px;
+  width: 100%;
   height: 320px;
   margin-top: 30px;
   margin-bottom: 30px;
@@ -17,21 +17,21 @@ const CardContainer = styled.div`
 
 class Card extends React.Component {
 
-    
-      render(){
-        return (
-          <CardContainer>
-            <p>{this.props.id}</p>
-            <p>{this.props.name}</p>
-            <p>{this.props.preco}</p>
-            <p>{this.props.imagem}</p>
-          </CardContainer>
-        );
-      }
-      
-    }
 
-    
-    
-    export default Card;
+  render() {
+    return (
+      <CardContainer>
+        <p>{this.props.id}</p>
+        <p>{this.props.name}</p>
+        <p>{this.props.preco}</p>
+        <p>{this.props.imagem}</p>
+      </CardContainer>
+    );
+  }
+
+}
+
+
+
+export default Card;
 
