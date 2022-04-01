@@ -1,5 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import listaProdutos from '../../Data/produtos.json';
+import ItemsCarrinho from './ItemsCarrinho'
+import App from  '../../App'
+
+
+const Card = styled.div`
+overflow: hidden;
+position: fixed;
+right: 10px;
+top: 80px;
+height: 420px;
+width: 300px;
+background-color: white;
+display:flex;
+flex-direction: column;
+align-items: center;
+justify-items: center;
+border-radius: 10px;
+border:solid 2px;
+margin-bottom: 10px;
+`
 
 const CartDiv = styled.div`
   position: fixed;
@@ -21,28 +42,34 @@ const CartDiv = styled.div`
     margin-top: 0px;
     margin-bottom: 0px;
   }
+ `
 
-  button{
-    position: relative;
-    top: 10px;
-    background-color: black;
-    color:white;
-    width: 100.5%;
-    height: 30px;
-    border: solid black 0.5px;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
+const Container = styled.div`
+display:flex;
+align-items:center;
+flex-direction: column;
 
-    :hover{
-      color:black;
-      background-color: white;
-    }
-  }
+h2{
+  width:300px;
+}
 `
 
-const CartDisplay = styled.div`
- width: 95%;
- height: 80%;
+const Button = styled.button`
+position:absolute;
+bottom:0px;
+width: 100%;
+height: 40px;
+border: none;
+background-color: black;
+color: white;
+border: solid black 1px;
+border-bottom-right-radius: 6px;
+border-bottom-left-radius: 6px;
+
+:hover{
+  background-color: white;
+  color: black ;
+}
 `
 
 
@@ -50,22 +77,37 @@ const CartDisplay = styled.div`
 class Carrinho extends React.Component {
 
   state = {
-    produtos: []
+    cart: this.props.items
   }
-    
+
+  delCarrinho = (id)=>{
+    let novoArray = []
+    this.setState({cart: novoArray})
+  }
+
       render(){
+
+        let componenteItem = this.props.items.map((item)=>{
+          return (
+            <ItemsCarrinho
+            id={item.id}
+            preco={item.preco}
+            img={item.imagem}
+            name={item.NomeProduto}
+            aoDeletar = {() => this.delCarrinho(item.id)}
+            onClick = {this.props.onClick}
+            />
+          ) 
+        })
+
         return (
-          <CartDiv>
-            <h2>Carrinho</h2>  
-            <CartDisplay>
-            <ul>
-              <li>item1</li>
-              <li>item2</li>
-              <li>item3</li>
-            </ul>
-            </CartDisplay>
-            <button>Comprar</button>
-          </CartDiv>
+          <Card>
+            <h2>Carrinho</h2>
+            <Container>
+              {componenteItem}
+            </Container>
+            <Button>Comprar</Button>
+          </Card>
         );
       }
       

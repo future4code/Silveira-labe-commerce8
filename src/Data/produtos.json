@@ -3,36 +3,42 @@
       "NomeProduto": "Marte",
       "preco": 1000,
       "imagem": "url",
-      "id": 1
+      "id": 1,
+      "cart": false
     },
     {
       "NomeProduto": "Júpiter",
       "preco": 200,
       "imagem": "url",
-      "id": 2
+      "id": 2,
+      "cart": false
     },
     {
       "NomeProduto": "Urano",
       "preco": 300,
       "imagem": "url",
-      "id": 3
+      "id": 3,
+      "cart": false
     },
     {
       "NomeProduto": "Sol",
       "preco": 700,
       "imagem": "url",
-      "id": 4
+      "id": 4,
+      "cart": false
     },
     {
       "NomeProduto": "Saturno",
       "preco": 900,
       "imagem": "url",
-      "id": 5
+      "id": 5,
+      "cart": false
     },
     {
       "NomeProduto": "Plutão",
       "preco": 120,
       "imagem": "url",
-      "id": 6
+      "id": 6,
+      "cart": false
     }
 ]
