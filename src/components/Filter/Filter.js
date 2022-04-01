@@ -8,16 +8,22 @@ class Filter extends React.Component {
           <div>
               <label>Filtro:</label>
             <input
+              type='number'
               placeholder='Valor Mínimo'
-              type='number'
+              value={this.props.valorMin}
+              onChange={this.props.updateValorMin}
             />
             <input
+              type='number'
               placeholder='Valor Maximo'
-              type='number'
+              value={this.props.valorMax}
+              onChange={this.props.updateValorMax}
             />
             <input
-              placeholder='Buscar Produto'
               type='text'
+              placeholder='Buscar Produto'
+              value={this.props.busca}
+              onChange={this.props.updateBusca}
             />
           </div>
         );

@@ -4,6 +4,7 @@ import listaProdutos from '../../Data/produtos.json';
 import ItemsCarrinho from './ItemsCarrinho'
 import App from  '../../App'
 
+
 const Card = styled.div`
 overflow: hidden;
 position: fixed;
@@ -20,6 +21,28 @@ border-radius: 10px;
 border:solid 2px;
 margin-bottom: 10px;
 `
+
+const CartDiv = styled.div`
+  position: fixed;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  right: 0px;
+  top: 60px;
+  border-radius: 10px;
+  border: solid 1px;
+  margin-right: 5px;
+  height: 400px;
+  width: 300px;
+  background-color: white;
+
+  h2{
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+ `
 
 const Container = styled.div`
 display:flex;

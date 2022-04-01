@@ -5,6 +5,7 @@ import Filter from './components/Filter/Filter';
 import Ordem from './components/Ordem/Ordem';
 import CardProduto from './components/CardProduto/CardProduto';
 import listaProdutos from '../src/Data/produtos.json';
+import Footer from './components/Footer/Footer';
 
 const MainDiv = styled.div`
 
@@ -42,12 +43,18 @@ div{
 `
 
 
+
+
 class App extends React.Component {
 
   state = {
     produtos: listaProdutos,
     filtroCarrinho: [],
-    stateButton: false
+    stateButton: false,    
+    ordem: "",
+    valorMin: '',
+    valorMax: '',
+    busca: ''
 
   }
 
@@ -73,6 +80,28 @@ class App extends React.Component {
   }
 
 
+  mudarOrdem = (event) => {
+    this.setState({ ordem: event.target.value  })
+  }
+
+  updateValorMin = (event) => {
+    this.setState({
+      valorMin: event.target.value
+    })
+  }
+
+  updateValorMax = (event) => {
+    this.setState({
+      valorMax: event.target.value
+    })
+  }
+  
+  updateBusca = (event) => {
+    this.setState({
+      busca: event.target.value
+    })
+  }
+
   render() {
 
     return (
@@ -86,13 +115,32 @@ class App extends React.Component {
           <div>
             <Filter />
             <hr />
-            <Ordem />
+            <Ordem onChange={this.props.mudarOrdem} />
+            <Filter 
+              busca={this.state.busca}
+              valorMin={this.state.valorMin}
+              valorMax={this.state.valorMax}
+              updateValorMin={this.updateValorMin}
+              updateValorMax={this.updateValorMax}
+              updateBusca={this.updateBusca}
+            />
+                
             <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
           </div>
           <hr />
           <div>
             {
-              this.state.produtos.map((produto) => {
+              this.state.produtos
+              .filter(produto => {
+                return produto.NomeProduto.toLowerCase().includes(this.state.busca.toLowerCase()); 
+              })
+               .filter(produto => {
+                  return this.state.valorMin === "" || produto.preco >= this.state.valorMin
+               })
+               .filter(produto => {
+                  return this.state.valorMax === "" || produto.preco <= this.state.valorMax
+               })
+              .map((produto) => {
                 return (
                   <DivCard>
                     <CardProduto
@@ -105,6 +153,8 @@ class App extends React.Component {
                   </DivCard>
                 )
               })
+              
+              
             }
             
           </div>
