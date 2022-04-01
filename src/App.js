@@ -14,20 +14,23 @@ const MainDiv = styled.div`
 const MenuSelecao = styled.div`
 
 `
+const ContainerGrid = styled.div`
 
+`
+const DivProdutos = styled.div`
+  background-color: aqua;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 50px;
+  justify-items: center;
+`
 const DivCard = styled.div`
 border:solid 2px;
 display:flex;
 flex-direction:column;
 `
 
-const Footer = styled.footer`
-height: 60px;
-`
-
 const Section = styled.section`
-height: 500px;
-
 div{
   display: flex;
   align-items: center;
@@ -111,7 +114,6 @@ class App extends React.Component {
         <img />
         <hr />
         <Section>
-
           <div>
             <Filter />
             <hr />
@@ -127,6 +129,7 @@ class App extends React.Component {
                 
             <label>{'Quantidade de produtos: ' + this.numeroProdutos}</label>
           </div>
+          </Section>
           <hr />
           <div>
             {
@@ -142,6 +145,7 @@ class App extends React.Component {
                })
               .map((produto) => {
                 return (
+                  <DivProdutos>
                   <DivCard>
                     <CardProduto
                       id={produto.id}
@@ -151,20 +155,13 @@ class App extends React.Component {
                     />
                     <button onClick={() => this.addInCart(produto.id)}>adicionar ao carrinho</button>
                   </DivCard>
+                  </DivProdutos>
                 )
-              })
-              
-              
+              })          
             }
-            
           </div>
           <hr />
-
-          section
-        </Section>
-        <hr />
         <Footer>
-
         </Footer>
       </MainDiv>
     );
