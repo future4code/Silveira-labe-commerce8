@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Carrinho from '../Carrinho/Carrinho';
+import listaProdutos from '../../Data/produtos.json';
 
 const CardContainer = styled.div`
   display: flex;
@@ -8,10 +10,10 @@ const CardContainer = styled.div`
   justify-content: center;
   width: 150px;
   height: 150px;
-  border: 2px solid black;
-
 `
+
 class Card extends React.Component {
+
     
       render(){
         return (
@@ -25,5 +27,8 @@ class Card extends React.Component {
       }
       
     }
+
+    
     
     export default Card;
+
