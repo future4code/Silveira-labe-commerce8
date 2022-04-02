@@ -1,7 +1,7 @@
 # Labe-commerce - Galaxy Quest
 
 ## 🚀 Acesse o nosso projeto em
-
+https://galaxy-quest.surge.sh/
 
 ## 🤝 Desenvolvedores
 
