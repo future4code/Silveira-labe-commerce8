@@ -70,7 +70,7 @@ class Header extends React.Component {
 
     let componenteCarrinho
     if(this.state.comprando){
-       componenteCarrinho = <Carrinho onClick={this.props.onClick} items = {this.props.filtroCarrinho} />     
+       componenteCarrinho = <Carrinho onClick={this.props.onClick} items = {this.props.filtroCarrinho} totalCarrinho = {this.props.totalCarrinho} />     
     }
     return (
       <ContainerHeader>

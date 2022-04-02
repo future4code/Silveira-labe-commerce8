@@ -90,6 +90,7 @@ class App extends React.Component {
   state = {
     produtos: listaProdutos,
     filtroCarrinho: [],
+    totalCarrinho: 0,
     stateButton: false,
     ordem: "Crescente",
     valorMin: '',
@@ -104,21 +105,30 @@ class App extends React.Component {
       if (produto.id === id) {
         this.state.filtroCarrinho = [...this.state.filtroCarrinho, produto]
         this.setState({ filtroCarrinho: this.state.filtroCarrinho })
-
-      }
+        produto.quantidade = produto.quantidade + 1; 
+        this.setState({ totalCarrinho:  this.state.totalCarrinho + produto.preco })
+      }        
     })
   }
 
 
   delInCart = (id) => {
 
-    let novoArray = this.state.filtroCarrinho.filter((item) => {
-      return item.id !== id
+    listaProdutos.map((produto) => {
+      if (produto.id === id) {        
+        if(produto.quantidade > 0){
+          produto.quantidade = produto.quantidade - 1;        
+          this.setState({ totalCarrinho:  this.state.totalCarrinho - produto.preco })
+        }
+        if(produto.quantidade <= 0){
+          let novoArray = this.state.filtroCarrinho.filter((item) => {
+            return item.id !== id
+          })
+          this.state.filtroCarrinho = novoArray
+          this.setState({ filtroCarrinho: this.state.filtroCarrinho })
+        }
+      }
     })
-    this.state.filtroCarrinho = novoArray
-    this.setState({ filtroCarrinho: this.state.filtroCarrinho })
-    console.log(this.state.filtroCarrinho)
-    console.log(this.state.produtos.length)
   }
 
 
@@ -173,7 +183,7 @@ class App extends React.Component {
 
     return (
       <MainDiv>
-        <Header onClick={this.delInCart} filtroCarrinho={this.state.filtroCarrinho} />
+        <Header onClick={this.delInCart} filtroCarrinho={this.state.filtroCarrinho} totalCarrinho={this.state.totalCarrinho}/>
         <MainImg imgUrl='https://images.pexels.com/photos/110854/pexels-photo-110854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'>
           <h1>Explore a Galáxia</h1>
         </MainImg>

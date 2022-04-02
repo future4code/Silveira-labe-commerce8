@@ -6,12 +6,14 @@ import App from  '../../App'
 
 
 const Card = styled.div`
-overflow: hidden;
+overflow-y: auto;
+overflow-x: hidden;
 position: fixed;
 right: 10px;
 top: 80px;
-height: 420px;
-width: 300px;
+min-height: 200px;
+max-height: 600px;
+width: 600px;
 background-color: white;
 display:flex;
 color:black;
@@ -20,6 +22,7 @@ align-items: center;
 justify-items: center;
 border-radius: 10px;
 margin-bottom: 10px;
+box-shadow: -5px 5px 5px 0px rgba(0,0,0,0.2);
 `
 
 const Container = styled.div`
@@ -33,32 +36,38 @@ h2{
 `
 
 const Button = styled.button`
-position:absolute;
+position:sticky;
 bottom:0px;
 width: 100%;
-height: 40px;
+padding: 15px;
 border: none;
-background-color: black;
+background-color: rgb(20, 100, 200);
+font-size: 17px;
 color: white;
-border-top: solid black 1px;
 border-bottom-right-radius: 6px;
 border-bottom-left-radius: 6px;
+cursor: pointer;
 
 :hover{
-  background-color: white;
-  color: black ;
+background-color: rgba(20, 100, 200, 0.7);
 }
 `
 
 const ValorItens = styled.div`
-  background-color: red;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-top: 15px;
+  margin-bottom: 50px;
 `;
 
 
 class Carrinho extends React.Component {
 
   state = {
-    cart: this.props.items
+    cart: this.props.items,
+    quantidade: 0
   }
 
   delCarrinho = (id)=>{
@@ -68,18 +77,20 @@ class Carrinho extends React.Component {
 
       render(){
 
-        let componenteItem = this.props.items.map((item)=>{
+        let componenteItem = this.props.items.filter( (ele,pos)=>this.props.items.indexOf(ele) == pos).map((item)=>{
           return (
             <ItemsCarrinho
             id={item.id}
+            key={item.id}
             preco={item.preco}
             img={item.imagem}
             name={item.NomeProduto}
+            quantidade={item.quantidade}
             aoDeletar = {() => this.delCarrinho(item.id)}
             onClick = {this.props.onClick}
             />
           ) 
-        })
+        })/* .filter( (ele,pos)=>this.props.items.indexOf(ele) == pos); */
 
         return (
           <Card>
@@ -88,7 +99,7 @@ class Carrinho extends React.Component {
               {componenteItem}
             </Container>
             <ValorItens>
-              555
+              {this.props.items.length === 0 ? 'Carrinho vazio' : `Valor Total: R$ ${this.props.totalCarrinho}`}
             </ValorItens>
             <Button>Comprar</Button>
           </Card>
